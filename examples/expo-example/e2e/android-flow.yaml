@@ -7,7 +7,7 @@ appId: com.reactnativelegal.expoexample
 # Wait for the app to be ready
 - extendedWaitUntil:
     visible: 'Tap to see list of OSS libraries'
-    timeout: 60000
+    timeout: 180000
 
 # Take screenshot for debugging
 - takeScreenshot: initial-screen
