@@ -22,16 +22,15 @@ jobs:
         working-directory: examples/bare-example
     steps:
       - uses: actions/checkout@v4
-      
+
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '20'
           cache: 'yarn'
-          cache-dependency-path: examples/bare-example/yarn.lock
-          
+
       - name: Install dependencies
-        run: yarn install --frozen-lockfile
+        run: yarn install --immutable
         
       - name: Generate legal notices
         run: yarn react-native legal-generate
@@ -45,6 +44,7 @@ jobs:
         with:
           variant: 'release'
           working-directory: examples/bare-example
+          github-token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Install Android app
         run: |
@@ -64,15 +64,15 @@ jobs:
         working-directory: examples/bare-example
     steps:
       - uses: actions/checkout@v4
-      
+
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '20'
           cache: 'yarn'
-          
+
       - name: Install dependencies
-        run: yarn install --frozen-lockfile
+        run: yarn install --immutable
         
       - name: Generate legal notices
         run: yarn react-native legal-generate
@@ -85,6 +85,7 @@ jobs:
           scheme: 'ReactNativeLegalBareExample'
           configuration: 'Release'
           working-directory: examples/bare-example
+          github-token: ${{ secrets.GITHUB_TOKEN }}
           
       - name: Setup iOS Simulator
         uses: futureware-tech/simulator-action@v2
